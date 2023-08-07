@@ -1,0 +1,33 @@
+name: Python Test
+
+on:
+  push:
+    branches:
+      - main  # Run the workflow on the 'main' branch (you can change this to any branch you want)
+
+jobs:
+  test_scripts:
+    runs-on: macOS-latest  # Use macOS as the operating system
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2  # This step checks out your code from the repository
+
+      - name: Set up Python
+        uses: actions/setup-python@v2  # Set up Python environment (you can change the version)
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # Install project dependencies from requirements.txt
+
+      - name: Run Script1
+        run: pytest API Testing_Automation_Assignment1.py  # Replace 'script1.py' with the actual filename of your first script
+
+      - name: Run Script2
+        run: pytest API Testing_Automation_Assignment2.py  # Replace 'script2.py' with the actual filename of your second script
+
+      - name: Run Script3
+        run: pytest API Testing_Automation_Assignment3.py  # Replace 'script3.py' with the actual filename of your third script
